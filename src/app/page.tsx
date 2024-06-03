@@ -4,7 +4,7 @@ import Image from "next/image";
 export const dynamic = "force-dynamic";
 const julius = Julius_Sans_One({ subsets: ["latin"], weight: ["400"] });
 async function getProducts() {
-  const res = await fetch("http://localhost:8080/products");
+  const res = await fetch("/api");
   const prods: {
     name: string;
     list_price: number;
@@ -24,7 +24,7 @@ async function getProducts() {
   return uniqueProds;
 }
 async function getCategories() {
-  const res = await fetch("http://localhost:8080/");
+  const res = await fetch("/api/categories");
   const categs: { id: string; name: string; code: string }[] = await res.json();
   return categs;
 }
