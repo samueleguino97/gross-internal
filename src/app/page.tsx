@@ -1,15 +1,15 @@
 import { Julius_Sans_One } from "next/font/google";
 import Image from "next/image";
 
-export const dynamic = "force-dynamic";
 const julius = Julius_Sans_One({ subsets: ["latin"], weight: ["400"] });
 async function getProducts() {
-  const res = await fetch("https://menu.gross.cafe//api");
+  const res = await fetch("https://menu.gross.cafe//api", {
+    cache: "no-store",
+  });
   const prods: {
     name: string;
     list_price: number;
     description_self_order: string;
-
     pos_categ_ids: string[];
     code: string;
   }[] = await res.json();
@@ -24,7 +24,9 @@ async function getProducts() {
   return uniqueProds;
 }
 async function getCategories() {
-  const res = await fetch("https://menu.gross.cafe/api/categories");
+  const res = await fetch("https://menu.gross.cafe/api/categories", {
+    cache: "no-store",
+  });
   const categs: { id: string; name: string; code: string }[] = await res.json();
   return categs;
 }

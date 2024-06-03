@@ -56,7 +56,6 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	}, &ids); err != nil {
 		log.Fatal(err)
 	}
-	//  fmt.Println(ids)
 
 	jsonString, err := json.Marshal(ids)
 	if err != nil {
