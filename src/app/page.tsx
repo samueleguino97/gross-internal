@@ -33,7 +33,7 @@ export default async function Home() {
   const categs = await getCategories();
 
   return (
-    <main className=" bg-[#123d51] grid md:grid-cols-2 md:gap-4 min-h-screen  text-white">
+    <main className=" bg-[#123d51] grid  md:gap-4 min-h-screen  text-white">
       <Image
         height={200}
         className="block mx-auto mt-10 mb-4"
