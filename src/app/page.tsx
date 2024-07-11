@@ -4,7 +4,7 @@ import Image from "next/image";
 const julius = Julius_Sans_One({ subsets: ["latin"], weight: ["400"] });
 async function getProducts() {
   const res = await fetch("https://menu.gross.cafe//api", {
-    cache: "no-store",
+    next: { revalidate: 60 * 60 * 12 },
   });
   const prods: {
     name: string;
@@ -27,7 +27,7 @@ async function getProducts() {
 }
 async function getCategories() {
   const res = await fetch("https://menu.gross.cafe/api/categories", {
-    cache: "no-store",
+    next: { revalidate: 60 * 60 * 12 },
   });
   const categs: { id: string; name: string; code: string }[] = await res.json();
   return categs;
