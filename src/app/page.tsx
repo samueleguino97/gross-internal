@@ -11,7 +11,9 @@ async function getProducts() {
     list_price: number;
     description_self_order: string;
     pos_categ_ids: string[];
+    default_code: string;
     code: string;
+    image_1024?: string;
   }[] = await res.json();
 
   //filter repeated names
@@ -46,7 +48,7 @@ export default async function Home() {
           prods?.filter(
             (p) =>
               p.pos_categ_ids.includes(i.id) &&
-              (p.name === "S'mores" ? true : p.list_price !== 0) &&
+              (p.default_code === "SMORES" ? true : p.list_price !== 0) &&
               p.list_price !== 1,
           ).length > 0 && (
             <div
@@ -65,16 +67,31 @@ export default async function Home() {
                   .filter(
                     (p) =>
                       p.pos_categ_ids.includes(i.id) &&
-                      (p.name === "S'mores" ? true : p.list_price !== 0) &&
+                      (p.default_code === "SMORES"
+                        ? true
+                        : p.list_price !== 0) &&
                       p.list_price !== 1,
                   )
                   .map((i) => (
                     <div key={i.name}>
+                      <div className="mb-4">
+                        {!!i.image_1024 && (
+                          <Image
+                            height={150}
+                            width={200}
+                            alt={i.name}
+                            className="rounded-lg "
+                            src={`data:image/jpg;base64, ${i.image_1024}`}
+                          />
+                        )}
+                      </div>
                       <div className="flex items-center">
                         <span className="w-60 text-2xl"> {i.name}</span>{" "}
-                        <span className="font-bold text-2xl">
-                          {i.list_price}Bs.
-                        </span>
+                        {!!i.list_price && (
+                          <span className="font-bold text-2xl">
+                            {i.list_price}Bs.
+                          </span>
+                        )}
                       </div>
                       <div className="  text-xl text-gray-400">
                         {i.description_self_order ? (
