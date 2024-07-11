@@ -37,15 +37,6 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	var result bool
-	if err := models.Call("execute_kw", []any{
-		db, uid, password,
-		"res.partner", "check_access_rights",
-		[]string{"read"},
-		map[string]bool{"raise_exception": false},
-	}, &result); err != nil {
-		log.Fatal(err)
-	}
 	var ids []any
 	if err := models.Call("execute_kw", []any{
 		db, uid, password,

@@ -31,9 +31,7 @@ async function getCategories() {
   return categs;
 }
 export default async function Home() {
-  const prods = await getProducts();
-  const categs = await getCategories();
-
+  const [categs, prods] = await Promise.all([getCategories(), getProducts()]);
   return (
     <main className=" bg-[#123d51] grid  md:gap-4 min-h-screen  text-white">
       <Image
@@ -45,10 +43,10 @@ export default async function Home() {
       />
       {categs?.map(
         (i, index) =>
-          prods.filter(
+          prods?.filter(
             (p) =>
               p.pos_categ_ids.includes(i.id) &&
-              p.list_price !== 0 &&
+              (p.name === "S'mores" ? true : p.list_price !== 0) &&
               p.list_price !== 1,
           ).length > 0 && (
             <div
@@ -67,7 +65,7 @@ export default async function Home() {
                   .filter(
                     (p) =>
                       p.pos_categ_ids.includes(i.id) &&
-                      p.list_price !== 0 &&
+                      (p.name === "S'mores" ? true : p.list_price !== 0) &&
                       p.list_price !== 1,
                   )
                   .map((i) => (
