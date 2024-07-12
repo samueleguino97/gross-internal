@@ -8,6 +8,7 @@ import Products from "./menu/products";
 import { getCategories, getProducts } from "@/funcs/odoo";
 
 const julius = Julius_Sans_One({ subsets: ["latin"], weight: ["400"] });
+export const revalidate = 3600;
 
 async function Menu() {
   const [categs, prods] = await Promise.all([getCategories(), getProducts()]);
