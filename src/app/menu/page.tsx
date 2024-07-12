@@ -5,43 +5,10 @@ import { Julius_Sans_One } from "next/font/google";
 import Image from "next/image";
 import Categories from "./categories";
 import Products from "./products";
+import { getProducts } from "@/funcs/odoo";
 
 const julius = Julius_Sans_One({ subsets: ["latin"], weight: ["400"] });
 
-async function getProducts() {
-  try {
-    const res = await fetch("https://menu.gross.cafe/api/", {});
-    const prods: {
-      name: string;
-      list_price: number;
-      description_self_order: string;
-      pos_categ_ids: string[];
-      default_code: string;
-      code: string;
-      image_1024?: string;
-    }[] = await res.json();
-
-    //filter repeated names
-    const uniqueProds = prods.filter((prod, index) => {
-      return (
-        prods.findIndex((p) => p.name === prod.name) === index &&
-        prod.code !== "DISC"
-      );
-    });
-    return uniqueProds.map((up) => ({
-      name: up.name,
-      list_price: up.list_price,
-      description_self_order: up.description_self_order,
-      pos_categ_ids: up.pos_categ_ids,
-      default_code: up.default_code,
-      code: up.code,
-      image_1024: up.image_1024,
-    }));
-  } catch (e) {
-    console.log(e);
-    return [];
-  }
-}
 async function getCategories() {
   const res = await fetch("https://menu.gross.cafe/api/categories", {});
   const categs: { id: string; name: string; code: string }[] = await res.json();

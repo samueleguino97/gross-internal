@@ -4,7 +4,7 @@ import Image from "next/image";
 const julius = Julius_Sans_One({ subsets: ["latin"], weight: ["400"] });
 async function getProducts() {
   try {
-    const res = await fetch("https://menu.gross.cafe//api", {});
+    const res = await fetch("https://menu.gross.cafe/api", {});
     const prods: {
       name: string;
       list_price: number;

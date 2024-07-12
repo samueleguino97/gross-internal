@@ -37,7 +37,7 @@ function Products({ products }: { products: any[] }) {
               </span>
             </div>
             {!!i.image_1024 && (
-              <div className="rounded-md h-24 relative  px-4 py-2 bg-[#d97b52] text-xs font-medium text-white flex items-center justify-center">
+              <div className="rounded-md w-24 h-24 relative  px-4 py-2 bg-[#d97b52] text-xs font-medium text-white flex items-center justify-center">
                 {!!i.image_1024 && (
                   <Image
                     layout="fill"
