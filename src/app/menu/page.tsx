@@ -10,8 +10,6 @@ const julius = Julius_Sans_One({ subsets: ["latin"], weight: ["400"] });
 
 async function getProducts() {
   const res = await fetch("https://menu.gross.cafe/api", {});
-  console.log(await res.text());
-  if (res.bodyUsed) return [];
   const prods: {
     name: string;
     list_price: number;
