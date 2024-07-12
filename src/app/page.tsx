@@ -1,33 +1,8 @@
+import { getProducts } from "@/funcs/odoo";
 import { Julius_Sans_One } from "next/font/google";
 import Image from "next/image";
 
 const julius = Julius_Sans_One({ subsets: ["latin"], weight: ["400"] });
-async function getProducts() {
-  try {
-    const res = await fetch("https://menu.gross.cafe/api", {});
-    const prods: {
-      name: string;
-      list_price: number;
-      description_self_order: string;
-      pos_categ_ids: string[];
-      default_code: string;
-      code: string;
-      image_1024?: string;
-    }[] = await res.json();
-
-    //filter repeated names
-    const uniqueProds = prods.filter((prod, index) => {
-      return (
-        prods.findIndex((p) => p.name === prod.name) === index &&
-        prod.code !== "DISC"
-      );
-    });
-    return uniqueProds;
-  } catch (error) {
-    console.log(error);
-    return [];
-  }
-}
 async function getCategories() {
   const res = await fetch("https://menu.gross.cafe/api/categories", {});
   const categs: { id: string; name: string; code: string }[] = await res.json();
