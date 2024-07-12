@@ -56,7 +56,7 @@ async function Menu() {
                 Disponibilidad solo en local
               </span>
               <a
-                href="https://wa.me/59165344065"
+                href={`https://wa.me/59165344065?text=${"Hola, quiero reservar una mesa para S'mores en el local."}`}
                 target="_blank"
                 className={
                   "rounded-md px-4 py-2 bg-[#d97b52] text-xs font-medium text-white flex items-center justify-center"
