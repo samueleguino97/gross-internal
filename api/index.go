@@ -44,6 +44,9 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		[]any{[]any{
 			[]any{"available_in_pos", "=", true},
 		}},
+		map[string]any{
+			"fields": []string{"name", "list_price", "description_self_order", "pos_categ_ids", "default_code", "image_1024"},
+		},
 	}, &ids); err != nil {
 		log.Fatal(err)
 	}

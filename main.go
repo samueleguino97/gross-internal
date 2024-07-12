@@ -1,21 +1,21 @@
-package handler
+package main
 
 import (
 	"encoding/json"
 	"fmt"
 	"log"
-	"net/http"
 
 	"github.com/kolo/xmlrpc"
 )
 
-func CatHandler(w http.ResponseWriter, r *http.Request) {
-	var (
-		url      = "https://grosscafe.cloudpepper.site/"
-		db       = "grosscafe.cloudpepper.site"
-		username = "admin"
-		password = "370649f740d18ffe470811c1bc2ae75278beb29c"
-	)
+var (
+	url      = "https://grosscafe.cloudpepper.site/"
+	db       = "grosscafe.cloudpepper.site"
+	username = "admin"
+	password = "370649f740d18ffe470811c1bc2ae75278beb29c"
+)
+
+func main() {
 
 	client, err := xmlrpc.NewClient(fmt.Sprintf("%s/xmlrpc/2/common", url), nil)
 	if err != nil {
@@ -36,28 +36,24 @@ func CatHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	var categs []any
-
+	var ids []any
 	if err := models.Call("execute_kw", []any{
 		db, uid, password,
-		"pos.category", "search_read",
-		[]any{[]any{}},
-
+		"product.template", "search_read",
+		[]any{[]any{
+			[]any{"available_in_pos", "=", true},
+		}},
 		map[string]any{
-			"fields": []string{
-				"id",
-				"name",
-				"code",
-			},
+			"fields": []string{"name", "list_price", "description_self_order", "pos_categ_ids", "default_code", "image_1024"},
 		},
-	}, &categs); err != nil {
+	}, &ids); err != nil {
 		log.Fatal(err)
 	}
 
-	jsonString, err := json.Marshal(categs)
+	jsonString, err := json.Marshal(ids)
 	if err != nil {
 
 		log.Fatal(err)
 	}
-	fmt.Fprintf(w, "%v", string(jsonString))
+	fmt.Fprintf(log.Writer(), "%v", string(jsonString))
 }
