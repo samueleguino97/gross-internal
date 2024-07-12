@@ -9,7 +9,7 @@ const julius = Julius_Sans_One({ subsets: ["latin"], weight: ["400"] });
 function Products({ products }: { products: any[] }) {
   const activeCategory = useStore($activeCategory);
   return (
-    <div className="px-7 flex flex-col gap-6 pt-8">
+    <div className="px-7 flex flex-col gap-6 pt-6">
       {products
         .filter((p) => p.pos_categ_ids.includes(activeCategory))
         .map((i, index) => (
