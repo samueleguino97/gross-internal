@@ -9,15 +9,14 @@ import (
 	"github.com/kolo/xmlrpc"
 )
 
-var (
-	url      = "https://grosscafe.cloudpepper.site/"
-	db       = "grosscafe.cloudpepper.site"
-	username = "admin"
-	password = "370649f740d18ffe470811c1bc2ae75278beb29c"
-)
+func ProdHandler(w http.ResponseWriter, r *http.Request) {
 
-func Handler(w http.ResponseWriter, r *http.Request) {
-
+	var (
+		url      = "https://grosscafe.cloudpepper.site/"
+		db       = "grosscafe.cloudpepper.site"
+		username = "admin"
+		password = "370649f740d18ffe470811c1bc2ae75278beb29c"
+	)
 	client, err := xmlrpc.NewClient(fmt.Sprintf("%s/xmlrpc/2/common", url), nil)
 	if err != nil {
 		log.Fatal(err)
