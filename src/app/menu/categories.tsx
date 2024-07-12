@@ -24,7 +24,7 @@ function Categories({ categs }: { categs: any[] }) {
           stroke-linejoin="round"
         />
       </svg>
-      <div className="flex gap-2 px-7 py-2 overflow-auto relative">
+      <div className="flex gap-2 px-7 py-2 overflow-auto relative ">
         {categs?.map(
           (i) =>
             !excludedCategories.includes(i.id) && (
@@ -34,8 +34,8 @@ function Categories({ categs }: { categs: any[] }) {
                 }}
                 className={
                   activeCategory === i.id
-                    ? "border cursor-pointer no-scrollbar border-[#92bbbb] flex w-24 min-w-24 items-center justify-center rounded-md px-4 py-2 text-center text-white bg-[#92bbbb] text-xs font-medium"
-                    : "border cursor-pointer no-scrollbar border-[#92bbbb] flex w-24 min-w-24 items-center justify-center rounded-md px-4 py-2 text-center text-[#92bbbb] text-xs font-medium "
+                    ? "border cursor-pointer no-scrollbar border-[#92bbbb] transition-all flex w-24 min-w-24 items-center justify-center rounded-md px-4 py-2 text-center text-white bg-[#92bbbb] text-xs font-medium"
+                    : "border cursor-pointer no-scrollbar border-[#92bbbb] transition-all flex w-24 min-w-24 items-center justify-center rounded-md px-4 py-2 text-center text-[#92bbbb] text-xs font-medium "
                 }
                 key={i.id}
               >
