@@ -51,7 +51,52 @@ function getOdooProducts() {
     );
   });
 }
+function getOdooCategories() {
+  return new Promise((resolve) => {
+    const url = "http://grosscafe.cloudpepper.site/";
+    const db = "grosscafe.cloudpepper.site";
+    const username = "admin";
+    const password = "370649f740d18ffe470811c1bc2ae75278beb29c";
+    const client = xmlrpc.createClient(`${url}/xmlrpc/2/common`);
+    const models = xmlrpc.createClient(`${url}/xmlrpc/2/object`);
+
+    client.methodCall(
+      "authenticate",
+      [db, username, password, ""],
+      (err, val) => {
+        if (err) {
+          console.log(err);
+        }
+        const userId = val;
+        models.methodCall(
+          "execute_kw",
+          [
+            db,
+            userId,
+            password,
+            "pos.category",
+            "search_read",
+            [[["available_in_pos", "=", true]]],
+            {
+              fields: ["id", "name", "code"],
+            },
+          ],
+          (err, val: any[]) => {
+            if (err) {
+              console.log(err);
+            }
+            return resolve(val as any[]);
+          },
+        );
+      },
+    );
+  });
+}
 export async function getProducts() {
   const prods = await getOdooProducts();
   return prods as any[];
+}
+export async function getCategories() {
+  const categs = await getOdooCategories();
+  return categs as any[];
 }

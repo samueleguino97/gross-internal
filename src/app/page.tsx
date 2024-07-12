@@ -5,15 +5,10 @@ import { Julius_Sans_One } from "next/font/google";
 import Image from "next/image";
 import Categories from "./menu/categories";
 import Products from "./menu/products";
-import { getProducts } from "@/funcs/odoo";
+import { getCategories, getProducts } from "@/funcs/odoo";
 
 const julius = Julius_Sans_One({ subsets: ["latin"], weight: ["400"] });
 
-async function getCategories() {
-  const res = await fetch("https://menu.gross.cafe/api/categories", {});
-  const categs: { id: string; name: string; code: string }[] = await res.json();
-  return categs.map((c) => ({ id: c.id, name: c.name, code: c.code }));
-}
 async function Menu() {
   const [categs, prods] = await Promise.all([getCategories(), getProducts()]);
   return (
