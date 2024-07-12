@@ -32,7 +32,7 @@ function Products({ products }: { products: any[] }) {
                 ></p>
               )}
               <span>
-                35
+                {i.list_price}
                 <span className="text-[#d97b52] text-lg"> Bs</span>
               </span>
             </div>
