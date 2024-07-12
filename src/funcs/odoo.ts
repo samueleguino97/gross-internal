@@ -42,7 +42,10 @@ function getOdooProducts() {
               console.log(err);
             }
             const uniqueProds = val.filter((prod, index: number) => {
-              return val.findIndex((p) => p.name === prod.name) === index;
+              return (
+                val.findIndex((p) => p.name === prod.name) === index &&
+                !prod.name?.toLowerCase().includes("promo")
+              );
             });
             return resolve(uniqueProds as any[]);
           },
