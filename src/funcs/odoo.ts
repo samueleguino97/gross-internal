@@ -76,9 +76,9 @@ function getOdooCategories() {
             password,
             "pos.category",
             "search_read",
-            [[["available_in_pos", "=", true]]],
+            [[]],
             {
-              fields: ["id", "name", "code"],
+              fields: ["id", "name"],
             },
           ],
           (err, val: any[]) => {

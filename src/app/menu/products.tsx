@@ -40,8 +40,8 @@ function Products({ products }: { products: any[] }) {
               <div className="rounded-md w-24 h-24 relative  px-4 py-2 bg-[#d97b52] text-xs font-medium text-white flex items-center justify-center">
                 {!!i.image_1024 && (
                   <Image
-                    layout="fill"
                     className="rounded-md object-cover h-full w-full aspect-square"
+                    fill
                     src={`data:image/jpg;base64, ${i.image_1024}`}
                     alt={i.name}
                   />
