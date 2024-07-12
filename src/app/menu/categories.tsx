@@ -1,7 +1,7 @@
 "use client";
 import { $activeCategory } from "@/stores/menu";
 import { useStore } from "@nanostores/react";
-import React from "react";
+import React, { useRef } from "react";
 
 function Categories({ categs }: { categs: any[] }) {
   const activeCategory = useStore($activeCategory);
@@ -29,7 +29,12 @@ function Categories({ categs }: { categs: any[] }) {
           (i) =>
             !excludedCategories.includes(i.id) && (
               <div
-                onClick={() => {
+                onClick={(e) => {
+                  e.currentTarget.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                    inline: "center",
+                  });
                   $activeCategory.set(i.id);
                 }}
                 className={
