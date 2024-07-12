@@ -12,4 +12,5 @@
   scrollbar-width: none; /* Firefox */
 }
 :root {
+  font-size: 20px;
 }
