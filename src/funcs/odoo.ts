@@ -54,6 +54,50 @@ function getOdooProducts() {
     );
   });
 }
+export async function getSalesReport() {
+  const report = await getOdooSalesReport();
+  return report as any[];
+}
+function getOdooSalesReport() {
+  return new Promise((resolve) => {
+    const url = "http://grosscafe.cloudpepper.site/";
+    const db = "grosscafe.cloudpepper.site";
+    const username = "admin";
+    const password = "370649f740d18ffe470811c1bc2ae75278beb29c";
+    const client = xmlrpc.createClient(`${url}/xmlrpc/2/common`);
+    const models = xmlrpc.createClient(`${url}/xmlrpc/2/object`);
+    client.methodCall(
+      "authenticate",
+      [db, username, password, ""],
+      (err, val) => {
+        if (err) {
+          console.log(err);
+        }
+        const userId = val;
+        models.methodCall(
+          "execute_kw",
+          [
+            db,
+            userId,
+            password,
+            "sale.report",
+            "search_read",
+            [[]],
+            {
+              fields: ["id", "date", "product_tmpl_id", "qty_delivered"],
+            },
+          ],
+          (err, val: any[]) => {
+            if (err) {
+              console.log(err);
+            }
+            return resolve(val as any[]);
+          },
+        );
+      },
+    );
+  });
+}
 function getOdooCategories() {
   return new Promise((resolve) => {
     const url = "http://grosscafe.cloudpepper.site/";

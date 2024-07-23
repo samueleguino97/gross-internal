@@ -39,6 +39,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
+      <head>
+        {" "}
+        <script defer src="/index.js"></script>
+      </head>
       <body className={brandingSFFont.className}>{children}</body>
     </html>
   );

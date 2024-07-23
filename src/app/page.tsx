@@ -23,7 +23,7 @@ async function Menu() {
       />
       <div className="pt-4 px-7">
         <h1 className="text-3xl" style={julius.style}>
-          Por Esta Semana
+          Por la semana de la amistad
         </h1>
         <div className="flex flex-col pt-2 gap-3">
           <Image
@@ -38,18 +38,22 @@ async function Menu() {
           <div className="flex flex-col justify-between  text-left">
             <div className="flex flex-col">
               <span className="text-xs text-[#c3c3c3] font-medium">
-                2<span className="text-[#2b2b2b] font-medium"> Smores</span>
+                2
+                <span className="text-[#2b2b2b] font-medium">
+                  {" "}
+                  Cocteles de Fruta
+                </span>
               </span>
               <span className="text-xs text-[#c3c3c3] font-medium">
                 2
                 <span className="text-[#2b2b2b] font-medium">
                   {" "}
-                  Chocolates Calientes
+                  Jugos de Fruta
                 </span>
               </span>
             </div>
             <div className="text-5xl ">
-              44 <span className="text-[#d97b52]">Bs</span>
+              25 <span className="text-[#d97b52]">Bs</span>
             </div>
             <div>
               <span className="text-[8px] text-[#c3c3c3]">
