@@ -84,7 +84,7 @@ function RewardsPage() {
             type="tel"
             placeholder="Telefono (sin el 591)"
           />
-          <div className="flex items-center">
+          <div className="flex items-center gap-2">
             <label>Fecha de Nacimiento</label>
             <Input
               required
