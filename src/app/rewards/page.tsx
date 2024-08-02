@@ -24,8 +24,14 @@ function RewardsPage() {
       localStorage.setItem("reviewed", "true");
     }
   }, [state]);
-  const alreadyReviewed = localStorage.getItem("reviewed");
-  if ((state?.message && state?.success) || alreadyReviewed === "true") {
+  const [alreadyReviewed, setAlreadyReviewed] = React.useState(false);
+  useEffect(() => {
+    const reviewed = localStorage.getItem("reviewed");
+    if (reviewed === "true") {
+      setAlreadyReviewed(true);
+    }
+  }, []);
+  if ((state?.message && state?.success) || alreadyReviewed) {
     return (
       <div>
         <Image
