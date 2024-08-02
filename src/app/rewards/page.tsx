@@ -124,6 +124,7 @@ function RewardsPage() {
         ></div>
         <Button
           disabled={!reviewed || pending}
+          type="submit"
           className="border cursor-pointer no-scrollbar border-[#92bbbb] transition-all flex w-24 min-w-24 items-center justify-center rounded-md px-4 py-2 text-center text-white bg-[#92bbbb]  text-xs font-medium disabled:opacity-40"
         >
           Enviar
