@@ -10,7 +10,7 @@ export async function handleRewardForm(prevState: any, body: FormData) {
     const SECRET_KEY = "0x4AAAAAAAgUrpTM04_dzcY-uJwmmmZ7n3o";
     const headerList = headers();
     console.log(headerList);
-    const ip = headerList.get("CF-Connecting-IP");
+    const ip = headerList.get("x-forwarded-for");
     if (!ip) return;
 
     // Validate the token by calling the
