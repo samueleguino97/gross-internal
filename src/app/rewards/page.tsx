@@ -23,9 +23,6 @@ function RewardsPage() {
     if (state?.success && state.message === "Gracias por tu reseña!") {
       localStorage.setItem("reviewed", "true");
     }
-    if (!state?.success && !!state?.message) {
-      (window as any).turnstile.reset("#turnstile");
-    }
   }, [state]);
   const [alreadyReviewed, setAlreadyReviewed] = React.useState(false);
   useEffect(() => {
