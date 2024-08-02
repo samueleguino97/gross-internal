@@ -135,7 +135,6 @@ function RewardsPage() {
         <div
           className="cf-turnstile"
           data-sitekey="0x4AAAAAAAgUrruQ95eNgKTC"
-          id="turnstile"
         ></div>
         <Button
           disabled={!reviewed || pending}
