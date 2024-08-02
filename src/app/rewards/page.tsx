@@ -20,6 +20,7 @@ function RewardsPage() {
   const { pending } = useFormStatus();
   const [state, formAction] = useFormState(handleRewardForm, initialState);
   useEffect(() => {
+    console.log(state);
     if (state?.success && state.message === "Gracias por tu reseña!") {
       localStorage.setItem("reviewed", "true");
     }
@@ -82,13 +83,16 @@ function RewardsPage() {
             type="tel"
             placeholder="Telefono (sin el 591)"
           />
-          <Input
-            required
-            className="px-4 py-2 border border-gray-200 focus:outline-offset-2 focus:outline-sky-300 "
-            name="birthday"
-            type="date"
-            placeholder="Fecha de Nacimiento"
-          />
+          <div className="flex items-center">
+            <label>Fecha de Nacimiento</label>
+            <Input
+              required
+              className="px-4 flex-1 py-2 border border-gray-200 focus:outline-offset-2 focus:outline-sky-300 "
+              name="birthday"
+              type="date"
+              placeholder="Fecha de Nacimiento"
+            />
+          </div>
         </div>
         <div className="py-6 ">
           <label

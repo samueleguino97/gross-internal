@@ -4,7 +4,6 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
 export async function handleRewardForm(prevState: any, body: FormData) {
-  console.log(body);
   const token = body.get("cf-turnstile-response");
   if (!token) return;
   const SECRET_KEY = "0x4AAAAAAAgUrpTM04_dzcY-uJwmmmZ7n3o";
@@ -26,6 +25,7 @@ export async function handleRewardForm(prevState: any, body: FormData) {
   });
 
   const outcome = await result.json();
+  console.log(outcome);
   if (outcome.success) {
     const TURSO_TOKEN =
       "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3MjI1NjcyNDUsImlkIjoiZjE5OTUzNDktNmZmOS00ZDllLTlmNzctMjUzNWJkYjdkMjVjIn0.bF0VtQe7kdkdhdrg10t6x8l-WPTmAREqu9mA4Zm_4U7Mn2XmaMcCW-p15W1v-xuiIWRZBjYl7WEw8bZL6btACw";
