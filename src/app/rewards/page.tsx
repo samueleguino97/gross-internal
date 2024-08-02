@@ -20,7 +20,6 @@ function RewardsPage() {
   const { pending } = useFormStatus();
   const [state, formAction] = useFormState(handleRewardForm, initialState);
   useEffect(() => {
-    console.log(state);
     if (state?.success && state.message === "Gracias por tu reseña!") {
       localStorage.setItem("reviewed", "true");
     }
@@ -34,7 +33,7 @@ function RewardsPage() {
   }, []);
   if ((state?.message && state?.success) || alreadyReviewed) {
     return (
-      <div>
+      <div className="p-4 container mx-auto">
         <Image
           height={48}
           className="block mb-4 mx-auto "
@@ -43,8 +42,10 @@ function RewardsPage() {
           width={127}
         />
         <h1 className="text-xl" style={julius.style}>
-          Obten un cafe de regalo llenando tu informacion y dejandonos una
-          reseña
+          Gracias por tu reseña!
+        </h1>
+        <h1 className="text-xl" style={julius.style}>
+          Nos ayuda a mejorar la cafetería para que sea más útil para todos.
         </h1>
       </div>
     );
@@ -95,27 +96,36 @@ function RewardsPage() {
           </div>
         </div>
         <div className="py-6 ">
-          <label
-            onClick={() =>
-              window.open("https://g.page/r/CW0oXTeULzszEBM/review", "_blank")
-            }
-            className={clsx(
-              " border rounded-md  w-full cursor-pointer flex items-center justify-center py-2 px-4",
-              {
-                "border-[#92bbbb] text-white ": reviewed,
-                "border-[#d97b52]": !reviewed,
-              },
-            )}
-          >
-            {reviewed ? "Gracias!" : "Dejar Reseña"}
-            <input
-              disabled={reviewed}
-              type="checkbox"
-              className="hidden"
-              checked={reviewed}
-              onChange={() => setReviewed(true)}
-            />
-          </label>
+          {reviewed ? (
+            <div style={julius.style} className="text-sm">
+              <p>Gracias por tu reseña!</p>
+              <p>
+                No olvides mandar tus datos para poder obtener un cafe de regalo
+              </p>
+            </div>
+          ) : (
+            <label
+              onClick={() =>
+                window.open("https://g.page/r/CW0oXTeULzszEBM/review", "_blank")
+              }
+              className={clsx(
+                " border rounded-md  w-full cursor-pointer flex items-center justify-center py-2 px-4",
+                {
+                  "border-[#92bbbb] text-white ": reviewed,
+                  "border-[#d97b52]": !reviewed,
+                },
+              )}
+            >
+              {reviewed ? "Gracias!" : "Dejar Reseña"}
+              <input
+                disabled={reviewed}
+                type="checkbox"
+                className="hidden"
+                checked={reviewed}
+                onChange={() => setReviewed(true)}
+              />
+            </label>
+          )}
         </div>
         {state?.message && state?.success === false && (
           <div className="py-2 px-2 border border-red-300 rounded-md">
@@ -129,7 +139,7 @@ function RewardsPage() {
         <Button
           disabled={!reviewed || pending}
           type="submit"
-          className="border cursor-pointer no-scrollbar border-[#92bbbb] transition-all flex w-24 min-w-24 items-center justify-center rounded-md px-4 py-2 text-center text-white bg-[#92bbbb]  text-xs font-medium disabled:opacity-40"
+          className="border cursor-pointer no-scrollbar border-[#92bbbb] transition-all flex w-24 min-w-24 items-center justify-center rounded-md px-4 py-2 text-center text-white bg-[#92bbbb]  text-xs font-medium disabled:opacity-40 disabled:bg-orange-400"
         >
           Enviar
         </Button>

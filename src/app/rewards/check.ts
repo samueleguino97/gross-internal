@@ -4,12 +4,10 @@ import { headers } from "next/headers";
 
 export async function handleRewardForm(prevState: any, body: FormData) {
   try {
-    console.log(body);
     const token = body.get("cf-turnstile-response");
     if (!token) return;
     const SECRET_KEY = "0x4AAAAAAAgUrpTM04_dzcY-uJwmmmZ7n3o";
     const headerList = headers();
-    console.log(headerList);
     const ip = headerList.get("x-forwarded-for");
     if (!ip) return;
 
