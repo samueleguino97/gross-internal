@@ -23,6 +23,9 @@ function RewardsPage() {
     if (state?.success && state.message === "Gracias por tu reseña!") {
       localStorage.setItem("reviewed", "true");
     }
+    if (!state?.success && !!state?.message) {
+      (window as any).turnstile.reset("#turnstile");
+    }
   }, [state]);
   const [alreadyReviewed, setAlreadyReviewed] = React.useState(false);
   useEffect(() => {
@@ -135,6 +138,7 @@ function RewardsPage() {
         <div
           className="cf-turnstile"
           data-sitekey="0x4AAAAAAAgUrruQ95eNgKTC"
+          id="turnstile"
         ></div>
         <Button
           disabled={!reviewed || pending}
